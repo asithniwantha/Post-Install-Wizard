@@ -104,6 +104,16 @@
             </Grid>
         </Border>
 
+        <!-- Window Controls -->
+        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="16" Panel.ZIndex="1">
+            <Button Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="Minimize" Click="MinimizeButton_Click" Width="36" Height="36">
+                <materialDesign:PackIcon Kind="WindowMinimize" Width="24" Height="24" />
+            </Button>
+            <Button Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="Close" Click="CloseButton_Click" Margin="8,0,0,0" Foreground="#ef5350" Width="36" Height="36">
+                <materialDesign:PackIcon Kind="Close" Width="24" Height="24" />
+            </Button>
+        </StackPanel>
+
         <!-- Main Content Area -->
         <Border Grid.Column="1" Padding="32">
             <Grid>
