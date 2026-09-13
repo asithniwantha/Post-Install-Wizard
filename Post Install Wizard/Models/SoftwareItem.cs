@@ -9,4 +9,10 @@ public partial class SoftwareItem : ObservableObject
 
     [ObservableProperty]
     private bool _isSelected;
+
+    [ObservableProperty]
+    private string _fileName = string.Empty;
+
+    [ObservableProperty]
+    private string _arguments = string.Empty;
 }
