@@ -40,7 +40,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <!-- Edit Area (Optional but nice to have below the grid for easier editing of long arguments) -->
+        <!-- Edit Area -->
         <Border Grid.Row="2" BorderBrush="{DynamicResource MaterialDesignDivider}" BorderThickness="0,1,0,0" Margin="0,16,0,16" Padding="0,16,0,0">
             <Grid IsEnabled="{Binding IsItemSelected}">
                 <Grid.ColumnDefinitions>
@@ -57,7 +57,14 @@
                 <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding SelectedSoftware.Name, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,8" />
 
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="File Name:" VerticalAlignment="Center" Margin="0,0,8,8" />
-                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SelectedSoftware.FileName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,8" />
+                <Grid Grid.Row="1" Grid.Column="1" Margin="0,0,0,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" Text="{Binding SelectedSoftware.FileName, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" />
+                    <Button Grid.Column="1" Content="Browse..." Command="{Binding BrowseFileCommand}" Margin="8,0,0,0" Width="90" Height="28" Padding="4,0,4,0" VerticalAlignment="Center" />
+                </Grid>
 
                 <TextBlock Grid.Row="2" Grid.Column="0" Text="Arguments:" VerticalAlignment="Center" />
                 <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding SelectedSoftware.Arguments, UpdateSourceTrigger=PropertyChanged}" />
