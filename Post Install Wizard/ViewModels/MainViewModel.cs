@@ -138,7 +138,31 @@ public partial class MainViewModel : ObservableObject
                     throw new Exception("File name is empty.");
                 }
 
-                var fullPath = Path.Combine(installersPath, item.FileName);
+                string fullPath;
+                if (Path.IsPathRooted(item.FileName))
+                {
+                    fullPath = item.FileName;
+                }
+                else
+                {
+                    // Check if file exists relative to installers directory first, otherwise relative to base directory
+                    string installerSubPath = Path.Combine(installersPath, item.FileName);
+                    string baseSubPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, item.FileName));
+
+                    if (System.IO.File.Exists(installerSubPath))
+                    {
+                        fullPath = installerSubPath;
+                    }
+                    else if (System.IO.File.Exists(baseSubPath))
+                    {
+                        fullPath = baseSubPath;
+                    }
+                    else
+                    {
+                        fullPath = installerSubPath; // Fallback for error messaging
+                    }
+                }
+
                 if (!System.IO.File.Exists(fullPath))
                 {
                     throw new FileNotFoundException($"Installer not found: {fullPath}");
